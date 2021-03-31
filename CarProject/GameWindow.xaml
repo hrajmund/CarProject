@@ -7,20 +7,28 @@
         mc:Ignorable="d"
         Title="GameWindow" Height="720" Width="1280">
     <Canvas x:Name="myCanvas"  Focusable="True" KeyDown="_Keydown" KeyUp="_Keyup"  Margin="-2,-393,-8,-21">
-
+        <Image Source="/_cars/road.png" Canvas.Left="571" Canvas.Top="337" Height="756" Width="143" />
+        <Image Source="_cars/road.png" Canvas.Left="655" Canvas.Top="337" Height="756" Width="143" />
+        <Image Source="_cars/road.png" Canvas.Left="477" Canvas.Top="347" Height="756" Width="143" />
 
         <Rectangle Name="car1" Canvas.Top="924" Canvas.Left="607" Height="128" Width="64">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="_cars\car1.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle x:Name="Rectan" Fill="Black" Tag="Collectibles" Canvas.Top="234" Canvas.Left="686" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
+        <Rectangle x:Name="C0" Fill="White" Tag="Collectible" Canvas.Top="414" Canvas.Left="625" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
 
         </Rectangle>
-        <Rectangle x:Name="Ettan" Fill="Black" Tag="Collectibles" Canvas.Top="302" Canvas.Left="449" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
+        <Rectangle x:Name="C1" Fill="Wheat" Tag="Collectible" Canvas.Top="414" Canvas.Left="534" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
 
         </Rectangle>
-        <Rectangle x:Name="fasz" Fill="Black" Tag="Collectibles" Canvas.Top="434" Canvas.Left="639" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
+        <Rectangle x:Name="C2" Fill="White" Canvas.Top="414" Canvas.Left="708" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
+
+        </Rectangle>
+        <Rectangle x:Name="C3" Fill="White" Canvas.Top="670" Canvas.Left="28" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
+
+        </Rectangle>
+        <Rectangle x:Name="C4" Fill="Black" Canvas.Top="226" Canvas.Left="243" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
 
         </Rectangle>
         <TextBox  x:Name="myScore"  Canvas.Left="28" Canvas.Top="434"/>
