@@ -20,55 +20,28 @@ namespace CarProject
     /// </summary>
     public partial class GameWindow : Window
     {
+        static List<Rectangle> Coins = new List<Rectangle>();
+        static List<Rect> HitBoxes = new List<Rect>();
+        static List<CoinsWithHitBoxes> CoinsAndHitBoxes = new List<CoinsWithHitBoxes>();
         bool goLeft, goRight;
-        int coincounter = 10;
         int speed = 12;
         int score = 0;
-        static List<Rectangle> _Coins = new List<Rectangle>();
-        static List<CoinClass> _CC = new List<CoinClass>();
+        int count = 0;
         public GameWindow()
         {
             InitializeComponent();
             myCanvas.Focus();
-            //for (int i = 0; i < coincounter; i++)
-            //{
-            //    Coins();
-            //    Hitbox(Coins());
-            //    CoinClass cc = new CoinClass(Coins(), Hitbox(Coins()));
-            //    _CC.Add(cc);
-            //    Canvas.SetTop(Coins(), Canvas.GetTop(Coins()) + speed);
-            //    Hit(car1, Coins());
-            //}
-
+            Coins.Add(C0);
+            Coins.Add(C1);
+            Coins.Add(C2);
+            Coins.Add(C3);
+            Coins.Add(C4);
+            
             DispatcherTimer dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Tick += Timer_Tick;
             dispatcherTimer.Interval = TimeSpan.FromMilliseconds(20);
             dispatcherTimer.Start();
         }
-        private Rect Hitbox(Rectangle coin)
-        {
-            Rect CollectibleHitBox = new Rect(Canvas.GetLeft(coin), Canvas.GetTop(coin), coin.Width, coin.Height);
-            return CollectibleHitBox;
-        }
-        //private Rectangle Coins()
-        //{
-        //    Random Left = new Random();
-        //    Left.Next(400, 850);
-        //    Random Top = new Random();
-            
-        //    Rectangle coin = new Rectangle()
-        //    {
-        //        Width = 32,
-        //        Height = 32,
-        //        Fill = Brushes.Black
-        //    };
-        //    myCanvas.Children.Add(coin);
-        //    _Coins.Add(coin);
-        //    Canvas.SetLeft(coin, Left.Next(400, 850));
-        //    Canvas.SetTop(coin, Top.Next(10, 300));
-        //    return coin;
-
-        //}
         private void Hit(Rectangle player, Rectangle _collectible)
         {
             Rect CarHitBox = new Rect(Canvas.GetLeft(player), Canvas.GetTop(player), player.Width, 1);
@@ -114,15 +87,51 @@ namespace CarProject
                 goRight = false;
             }
         }
-
+        private void Intersection(Rect CarHitBox, Rect CollectibleHitBox, Rectangle C)
+        {
+            CollectibleHitBox.Height = 1;
+            CollectibleHitBox.Width = 1;
+            C.Visibility = Visibility.Hidden;
+            count += 1;
+            if (count < 1)
+            {
+                count = 1;
+            }
+            myScore.Text = Convert.ToString(score + count);
+        }
+        private void Respawn(Rectangle C)
+        {
+            C.Visibility = Visibility.Visible;
+            Random positionX = new Random();
+            Random positionY = new Random();
+            
+            Canvas.SetTop(C, positionY.Next(30,315));
+            if (positionX.Next(1,4) == 1)
+            {
+                Canvas.SetLeft(C, 534);
+            }
+            if (positionX.Next(1,4) == 2)
+            {
+                Canvas.SetLeft(C, 625);
+            }
+            if (positionX.Next(1,4) == 3)
+            {
+                Canvas.SetLeft(C, 708);
+            }
+        }
+        private void Reach(Rectangle C, Rect Hitbox, Rect ReachHitBox)
+        {
+            if (Hitbox.IntersectsWith(ReachHitBox))
+            {
+                Respawn(C);
+            }
+        }
         private void Timer_Tick(object sender, EventArgs e)
         {
-            Canvas.SetTop(C0, Canvas.GetTop(C0) + speed);
-            Canvas.SetTop(C1, Canvas.GetTop(C1) + speed);
-            Canvas.SetTop(C2, Canvas.GetTop(C2) + speed);
-            Canvas.SetTop(C3, Canvas.GetTop(C3) + speed);
-            Canvas.SetTop(C4, Canvas.GetTop(C4) + speed);
-
+            for (int i = 0; i < Coins.Count; i++)
+            {
+                Canvas.SetTop(Coins[i], Canvas.GetTop(Coins[i]) + speed);
+            }
             if (goLeft && Canvas.GetLeft(car1) > 515)
             {
                 Canvas.SetLeft(car1, Canvas.GetLeft(car1) - speed);
@@ -132,115 +141,40 @@ namespace CarProject
                 Canvas.SetLeft(car1, Canvas.GetLeft(car1) + speed);
             }
             Rect CarHitBox = new Rect(Canvas.GetLeft(car1), Canvas.GetTop(car1), car1.Width, 1);
+            Rect ReachesHitBox = new Rect(Canvas.GetLeft(Reaches), Canvas.GetTop(Reaches), Reaches.Width, Reaches.Height);
+            
             Rect CollectibleHitBox0 = new Rect(Canvas.GetLeft(C0), Canvas.GetTop(C0), C0.Width, C0.Height);
             Rect CollectibleHitBox1 = new Rect(Canvas.GetLeft(C1), Canvas.GetTop(C1), C1.Width, C1.Height);
             Rect CollectibleHitBox2 = new Rect(Canvas.GetLeft(C2), Canvas.GetTop(C2), C2.Width, C2.Height);
             Rect CollectibleHitBox3 = new Rect(Canvas.GetLeft(C3), Canvas.GetTop(C3), C3.Width, C3.Height);
             Rect CollectibleHitBox4 = new Rect(Canvas.GetLeft(C4), Canvas.GetTop(C4), C4.Width, C4.Height);
-            int count = 0;
+            
             if (CarHitBox.IntersectsWith(CollectibleHitBox0))
             {
-                CollectibleHitBox0.Height = 1;
-                CollectibleHitBox0.Width = 1;
-                C0.Visibility = Visibility.Hidden;
-                count += 1;
-                if (count < 1)
-                {
-                    count = 1;
-                }
-                myScore.Text = Convert.ToString(score + count);
-
+                Intersection(CarHitBox, CollectibleHitBox0, C0);
+                Respawn(C0);
+                //Reach(C0, CollectibleHitBox0);
             }
             if (CarHitBox.IntersectsWith(CollectibleHitBox1))
             {
-                CollectibleHitBox1.Height = 1;
-                CollectibleHitBox1.Width = 1;
-                C1.Visibility = Visibility.Hidden;
-                count += 1;
-                if (count < 1)
-                {
-                    count = 1;
-                }
-                myScore.Text = Convert.ToString(score + count);
-
+                Intersection(CarHitBox, CollectibleHitBox1, C1);
+                Respawn(C1);
             }
             if (CarHitBox.IntersectsWith(CollectibleHitBox2))
             {
-                CollectibleHitBox2.Height = 1;
-                CollectibleHitBox2.Width = 1;
-                C2.Visibility = Visibility.Hidden;
-                count += 1;
-                if (count < 1)
-                {
-                    count = 1;
-                }
-                myScore.Text = Convert.ToString(score + count);
-
+                Intersection(CarHitBox, CollectibleHitBox2, C2);
+                Respawn(C2);
             }
             if (CarHitBox.IntersectsWith(CollectibleHitBox3))
             {
-                CollectibleHitBox3.Height = 1;
-                CollectibleHitBox3.Width = 1;
-                C3.Visibility = Visibility.Hidden;
-                count += 1;
-                if (count < 1)
-                {
-                    count = 1;
-                }
-                myScore.Text = Convert.ToString(score + count);
-
+                Intersection(CarHitBox, CollectibleHitBox3, C3);
+                Respawn(C3);
             }
             if (CarHitBox.IntersectsWith(CollectibleHitBox4))
             {
-                CollectibleHitBox3.Height = 1;
-                CollectibleHitBox3.Width = 1;
-                C3.Visibility = Visibility.Hidden;
-                count += 1;
-                if (count < 1)
-                {
-                    count = 1;
-                }
-                myScore.Text = Convert.ToString(score + count);
-
+                Intersection(CarHitBox, CollectibleHitBox4, C4);
+                Respawn(C4);
             }
-            //Canvas.SetTop(_Coins[0], Canvas.GetTop(_Coins[0]) + speed);
-            //for (int i = 0; i < _Coins.Count; i++)
-            //{
-            //    Canvas.SetTop(_Coins[i], Canvas.GetTop(_Coins[i]) + speed);
-
-            //}
-            //Rect CarHitBox = new Rect(Canvas.GetLeft(car1), Canvas.GetTop(car1), car1.Width, 1);
-            //Rect CollectibleHitBox = new Rect(Canvas.GetLeft(Coin), Canvas.GetTop(Coin), Coin.Width, Coin.Height);
-            //Rect CollectibleHitBox2 = new Rect(Canvas.GetLeft(Coin2), Canvas.GetTop(Coin2), Coin2.Width, Coin2.Height);
-            //Rect CollectibleHitBox3 = new Rect(Canvas.GetLeft(Coin3), Canvas.GetTop(Coin3), Coin3.Width, Coin3.Height);
-
-            //if (CarHitBox.IntersectsWith(CollectibleHitBox2))
-            //{
-            //    CollectibleHitBox2.Height = 1;
-            //    CollectibleHitBox2.Width = 1;
-            //    Coin2.Visibility = Visibility.Hidden;
-            //    count += 1;
-            //    if (count < 1)
-            //    {
-            //        count = 1;
-            //    }
-            //    myScore.Text = Convert.ToString(score + count);
-
-            //}
-            //if (CarHitBox.IntersectsWith(CollectibleHitBox3))
-            //{
-            //    CollectibleHitBox3.Height = 1;
-            //    CollectibleHitBox3.Width = 1;
-            //    Coin3.Visibility = Visibility.Hidden;
-            //    count += 1;
-            //    if (count < 1)
-            //    {
-            //        count = 1;
-            //    }
-            //    myScore.Text = Convert.ToString(score + count);
-
-            //}
-
 
         }
     }

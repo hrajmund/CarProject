@@ -16,7 +16,11 @@
                 <ImageBrush ImageSource="_cars\car1.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle x:Name="C0" Fill="White" Tag="Collectible" Canvas.Top="414" Canvas.Left="625" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
+
+        <Rectangle x:Name="Reaches" Fill="White" Tag="Collectible" Canvas.Top="1108" Canvas.Left="506" Width="261" Height="32" RenderTransformOrigin="1.156,-3.406">
+
+        </Rectangle>
+        <Rectangle x:Name="C0" Fill="White" Tag="Collectible" Canvas.Top="305" Canvas.Left="623" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
 
         </Rectangle>
         <Rectangle x:Name="C1" Fill="Wheat" Tag="Collectible" Canvas.Top="414" Canvas.Left="534" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
@@ -28,7 +32,19 @@
         <Rectangle x:Name="C3" Fill="White" Canvas.Top="670" Canvas.Left="28" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
 
         </Rectangle>
-        <Rectangle x:Name="C4" Fill="Black" Canvas.Top="226" Canvas.Left="243" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
+        <Rectangle x:Name="C4" Fill="Black" Canvas.Top="255" Canvas.Left="534" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
+
+        </Rectangle>
+        <Rectangle x:Name="C5" Fill="Black" Canvas.Top="10" Canvas.Left="708" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
+
+        </Rectangle>
+        <Rectangle x:Name="C6" Fill="Black" Canvas.Top="157" Canvas.Left="618" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
+
+        </Rectangle>
+        <Rectangle x:Name="C7" Fill="Black" Canvas.Top="116" Canvas.Left="708" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
+
+        </Rectangle>
+        <Rectangle x:Name="C8" Fill="Black" Canvas.Top="97" Canvas.Left="534" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
 
         </Rectangle>
         <TextBox  x:Name="myScore"  Canvas.Left="28" Canvas.Top="434"/>
