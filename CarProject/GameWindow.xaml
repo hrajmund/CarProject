@@ -17,7 +17,7 @@
             </Rectangle.Fill>
         </Rectangle>
 
-        <Rectangle x:Name="Reaches" Fill="White" Tag="Collectible" Canvas.Top="1108" Canvas.Left="506" Width="261" Height="32" RenderTransformOrigin="1.156,-3.406">
+        <Rectangle x:Name="Back" Fill="White" Tag="Collectible" Canvas.Top="1108" Canvas.Left="506" Width="261" Height="32" RenderTransformOrigin="1.156,-3.406">
 
         </Rectangle>
         <Rectangle x:Name="C0" Fill="White" Tag="Collectible" Canvas.Top="305" Canvas.Left="623" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
