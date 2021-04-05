@@ -22,6 +22,7 @@ namespace CarProject
     {
         static List<Rectangle> Coins = new List<Rectangle>();
         static List<Rect> HitBoxes = new List<Rect>();
+
         bool goLeft, goRight;
         int speed = 12;
         int score = 0;
@@ -38,12 +39,36 @@ namespace CarProject
             Coins.Add(C4);
             Coins.Add(C5);
             Coins.Add(C6);
-            Coins.Add(C7);
+            //Coins.Add(C7);
+            //Coins.Add(C8);
 
             DispatcherTimer dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Tick += Timer_Tick;
             dispatcherTimer.Interval = TimeSpan.FromMilliseconds(20);
             dispatcherTimer.Start();
+        }
+        private void _Keydown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.A)
+            {
+                goLeft = true;
+            }
+            else if (e.Key == Key.D)
+            {
+                goRight = true;
+            }
+        }
+
+        private void _Keyup(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.A)
+            {
+                goLeft = false;
+            }
+            else if (e.Key == Key.D)
+            {
+                goRight = false;
+            }
         }
         private void Hit(Rectangle player, Rectangle _collectible)
         {
@@ -68,29 +93,6 @@ namespace CarProject
             if (CollectibleHitBox.IntersectsWith(BackBox))
             {
                 Respawn(_collectible);
-            }
-        }
-        private void _Keydown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.A)
-            {
-                goLeft = true;
-            }
-            else if (e.Key == Key.D)
-            {
-                goRight = true;
-            }
-        }
-
-        private void _Keyup(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.A)
-            {
-                goLeft = false;
-            }
-            else if (e.Key == Key.D)
-            {
-                goRight = false;
             }
         }
         private void Respawn(Rectangle C)

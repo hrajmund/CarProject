@@ -4,49 +4,75 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarProject"
+        
         mc:Ignorable="d"
-        Title="GameWindow" Height="720" Width="1280" ResizeMode="CanMinimize">
+        Title="Endless Runner" 
+
+        Height="720" Width="1280"
+        ResizeMode="CanMinimize" 
+        Icon="images/coin.png" Background="#1E221C">
+    
     <Canvas x:Name="myCanvas"  Focusable="True" KeyDown="_Keydown" KeyUp="_Keyup"  Margin="-2,-393,-8,-21">
-        <Image Source="/_cars/road.png" Canvas.Left="571" Canvas.Top="337" Height="756" Width="143" />
-        <Image Source="_cars/road.png" Canvas.Left="655" Canvas.Top="337" Height="756" Width="143" />
-        <Image Source="_cars/road.png" Canvas.Left="477" Canvas.Top="347" Height="756" Width="143" />
+        <Image Source="images/road.png" Canvas.Left="571" Canvas.Top="337" Height="756" Width="143" />
+        <Image Source="images/road.png" Canvas.Left="655" Canvas.Top="337" Height="756" Width="143" />
+        <Image Source="images/road.png" Canvas.Left="477" Canvas.Top="347" Height="756" Width="143" />
+        <Image Source="/images/packofmoney.png" Canvas.Left="58" Canvas.Top="414" Height="55" Width="55" />
+
 
         <Rectangle Name="car1" Canvas.Top="924" Canvas.Left="607" Height="128" Width="64">
             <Rectangle.Fill>
-                <ImageBrush ImageSource="_cars\car1.png"></ImageBrush>
+                <ImageBrush ImageSource="/images/car1.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>
 
         <Rectangle x:Name="Back" Fill="White" Tag="Collectible" Canvas.Top="1108" Canvas.Left="506" Width="261" Height="32" RenderTransformOrigin="1.156,-3.406">
 
         </Rectangle>
-        <Rectangle x:Name="C0" Fill="White" Tag="Collectible" Canvas.Top="305" Canvas.Left="623" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
-
+        <Rectangle x:Name="C0" Canvas.Top="305" Canvas.Left="623" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/images/coin.png"></ImageBrush>
+            </Rectangle.Fill>
         </Rectangle>
-        <Rectangle x:Name="C1" Fill="Wheat" Tag="Collectible" Canvas.Top="414" Canvas.Left="534" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
-
+        <Rectangle x:Name="C1" Canvas.Top="414" Canvas.Left="534" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/images/coin.png"></ImageBrush>
+            </Rectangle.Fill>
         </Rectangle>
-        <Rectangle x:Name="C2" Fill="White" Canvas.Top="414" Canvas.Left="708" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
-
+        <Rectangle x:Name="C2" Canvas.Top="414" Canvas.Left="708" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/images/coin.png"></ImageBrush>
+            </Rectangle.Fill>
         </Rectangle>
-        <Rectangle x:Name="C3" Fill="White" Canvas.Top="670" Canvas.Left="28" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
-
+        <Rectangle x:Name="C3" Canvas.Top="255" Canvas.Left="708" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/images/coin.png"></ImageBrush>
+            </Rectangle.Fill>
         </Rectangle>
-        <Rectangle x:Name="C4" Fill="Black" Canvas.Top="255" Canvas.Left="534" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
-
+        <Rectangle x:Name="C4" Canvas.Top="255" Canvas.Left="534" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/images/coin.png"></ImageBrush>
+            </Rectangle.Fill>
         </Rectangle>
-        <Rectangle x:Name="C5" Fill="Black" Canvas.Top="10" Canvas.Left="708" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
-
+        <Rectangle x:Name="C5" Canvas.Top="10" Canvas.Left="708" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/images/coin.png"></ImageBrush>
+            </Rectangle.Fill>
         </Rectangle>
-        <Rectangle x:Name="C6" Fill="Black" Canvas.Top="157" Canvas.Left="618" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
-
+        <Rectangle x:Name="C6" Canvas.Top="157" Canvas.Left="618" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/images/coin.png"></ImageBrush>
+            </Rectangle.Fill>
         </Rectangle>
-        <Rectangle x:Name="C7" Fill="Black" Canvas.Top="116" Canvas.Left="708" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
-
+        <!--<Rectangle x:Name="C7" Canvas.Top="116" Canvas.Left="708" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/images/coin.png"></ImageBrush>
+            </Rectangle.Fill>
         </Rectangle>
-        <Rectangle x:Name="C8" Fill="Black" Canvas.Top="97" Canvas.Left="534" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
-
-        </Rectangle>
-        <TextBox  x:Name="myScore"  Canvas.Left="28" Canvas.Top="434"/>
+        <Rectangle x:Name="C8" Canvas.Top="97" Canvas.Left="534" Width="32" Height="32" RenderTransformOrigin="1.156,-3.406">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="/images/coin.png"></ImageBrush>
+            </Rectangle.Fill>
+        </Rectangle>-->
+        <TextBox  x:Name="myScore" IsReadOnly="True" Background="#1E221C" Foreground="#E6AF2E" FontFamily="Barlow Condensed Black" BorderThickness="0" Canvas.Left="116" Canvas.Top="430" FontSize="25" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Stretch" Height="34" Width="30"/>
     </Canvas>
 </Window>

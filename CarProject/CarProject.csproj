@@ -67,7 +67,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CoinsWithHitBoxes.cs" />
     <Compile Include="GameWindow.xaml.cs">
       <DependentUpon>GameWindow.xaml</DependentUpon>
     </Compile>
@@ -103,10 +102,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="_cars\car1.png" />
+    <Resource Include="images\car1.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="_cars\road.png" />
+    <Resource Include="images\road.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\coin.png" />
+    <Resource Include="images\packofmoney.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
