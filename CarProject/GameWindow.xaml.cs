@@ -26,7 +26,7 @@ namespace CarProject
         bool goLeft, goRight;
         int speed = 12;
         int score = 0;
-        int count = 0;
+        static int count = 0;
         public GameWindow()
         {
             InitializeComponent();
