@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,17 +21,24 @@ namespace CarProject
     /// </summary>
     public partial class GameWindow : Window
     {
+        static List<int> Scores = new List<int>();
         static List<Rectangle> Coins = new List<Rectangle>();
+        static List<Rectangle> RoadBlocks = new List<Rectangle>();
         static List<Rect> HitBoxes = new List<Rect>();
 
         bool goLeft, goRight;
         int speed = 12;
         int score = 0;
-        static int count = 0;
+        int scorecount = 0;
+        int faultcount = 0;
+        int fault = 0;
+        int selectedIndex;
         public GameWindow()
         {
-            InitializeComponent();
+            InitializeComponent();                       
             myCanvas.Focus();
+
+            //CountReadIn();
 
             Coins.Add(C0);
             Coins.Add(C1);
@@ -39,8 +47,8 @@ namespace CarProject
             Coins.Add(C4);
             Coins.Add(C5);
             Coins.Add(C6);
-            //Coins.Add(C7);
-            //Coins.Add(C8);
+            RoadBlocks.Add(R0);
+            RoadBlocks.Add(R1);
 
             DispatcherTimer dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Tick += Timer_Tick;
@@ -70,7 +78,7 @@ namespace CarProject
                 goRight = false;
             }
         }
-        private void Hit(Rectangle player, Rectangle _collectible)
+        private void CoinHit(Rectangle player, Rectangle _collectible)
         {
             Rect CarHitBox = new Rect(Canvas.GetLeft(player), Canvas.GetTop(player), player.Width, 1);
             Rect CollectibleHitBox = new Rect(Canvas.GetLeft(_collectible), Canvas.GetTop(_collectible), _collectible.Width, _collectible.Height);
@@ -82,12 +90,12 @@ namespace CarProject
                 CollectibleHitBox.Height = 1;
                 CollectibleHitBox.Width = 1;
                 _collectible.Visibility = Visibility.Hidden;
-                count += 1;
-                if (count < 1)
+                scorecount += 1;
+                if (scorecount < 1)
                 {
-                    count = 1;
+                    scorecount = 1;
                 }
-                myScore.Text = Convert.ToString(score + count);
+                myScore.Text = Convert.ToString(score + scorecount);
                 Respawn(_collectible);
             }
             if (CollectibleHitBox.IntersectsWith(BackBox))
@@ -121,6 +129,10 @@ namespace CarProject
             {
                 Canvas.SetTop(Coins[i], Canvas.GetTop(Coins[i]) + speed);
             }
+            for (int i = 0; i < RoadBlocks.Count; i++)
+            {
+                Canvas.SetTop(RoadBlocks[i], Canvas.GetTop(RoadBlocks[i]) + speed);
+            }
             if (goLeft && Canvas.GetLeft(car1) > 515)
             {
                 Canvas.SetLeft(car1, Canvas.GetLeft(car1) - speed);
@@ -132,7 +144,57 @@ namespace CarProject
 
             for (int i = 0; i < Coins.Count; i++)
             {
-                Hit(car1, Coins[i]);                
+                CoinHit(car1, Coins[i]);                
+            }
+            for (int i = 0; i < RoadBlocks.Count; i++)
+            {
+                RoadBlockHit(car1, RoadBlocks[i]);                
+            }
+        }
+        //private void CountReadIn()
+        //{
+        //    StreamReader sr = new StreamReader("index.txt");
+        //    string line = sr.ReadLine();
+        //    for (int i = 0; i < Convert.ToInt32(line); i++)
+        //    {
+        //        Scores[i] = 0;
+        //    }
+        //    count = Convert.ToInt32(line);
+        //    Console.WriteLine(count);
+        //    selectedIndex = Convert.ToInt32(line);
+        //    Console.WriteLine(selectedIndex);
+        //}
+        private void RoadBlockHit(Rectangle player, Rectangle _collectible)
+        {
+            Rect CarHitBox = new Rect(Canvas.GetLeft(player), Canvas.GetTop(player), player.Width, 1);
+            Rect CollectibleHitBox = new Rect(Canvas.GetLeft(_collectible), Canvas.GetTop(_collectible), _collectible.Width, _collectible.Height);
+            Rect BackBox = new Rect(Canvas.GetLeft(Back), Canvas.GetTop(Back), Back.Width, Back.Height);
+
+
+            if (CarHitBox.IntersectsWith(CollectibleHitBox))
+            {
+                CollectibleHitBox.Height = 1;
+                CollectibleHitBox.Width = 1;
+                _collectible.Visibility = Visibility.Hidden;
+                fault += 1;
+                if (fault < 1)
+                {
+                    faultcount = 1;
+                }
+                myFaults.Text = Convert.ToString(fault + faultcount);
+                Respawn(_collectible);
+            }
+            if (CollectibleHitBox.IntersectsWith(BackBox))
+            {
+                Respawn(_collectible);
+            }
+            if (fault == 3)
+            {
+                //StreamWriter sw = new StreamWriter("scoring.txt");
+                //sw.WriteLine(count);
+                //sw.WriteLine(selectedIndex);
+                MessageBox.Show("Meghaltál");
+                Application.Current.MainWindow.Close();
             }
         }
     }

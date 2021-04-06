@@ -26,11 +26,11 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <ListBox x:Name="Players" Margin="30,10,30,60" BorderBrush="#E6AF2E" BorderThickness="2" Background="#403233" FontFamily="Barlow Condensed Black" >
+            <ListBox x:Name="Players" Margin="30,10,30,60" BorderBrush="#E6AF2E" Foreground="#E6AF2E" BorderThickness="2" Background="#403233" FontFamily="Barlow Condensed Black" >
             </ListBox>
             <TextBox x:Name="NameText" Grid.Column="1" Margin="10,10,10,170" BorderBrush="#E6AF2E" BorderThickness="2" Background="#403233" Foreground="#E6AF2E" FontFamily="Barlow Condensed Black"></TextBox>
             <Button x:Name="New_Profile" Content="Create a new Profile" Margin="110,64,120,119" Foreground="#E6AF2E" Background="#403233" FontFamily="Barlow Condensed Black" FontSize="15" Click="CreateProfile" Grid.Column="1" ></Button>
-            <Button x:Name="Select_Profile" Content="Select Profile" Margin="110,163,120,20" Foreground="#E6AF2E" Background="#403233" FontFamily="Barlow Condensed Black" FontSize="15" RenderTransformOrigin="0.479,0.602" ></Button>
+            <!--<Button x:Name="Select_Profile" Content="Select Profile" Margin="110,163,120,20" Foreground="#E6AF2E" Background="#403233" FontFamily="Barlow Condensed Black" FontSize="15" RenderTransformOrigin="0.479,0.602" Click="Select" ></Button>-->
         </Grid>
     </Grid>
 </Window>
