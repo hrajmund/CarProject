@@ -23,8 +23,8 @@ namespace CarProject
     {
         static List<string> ProfileNames = new List<string>();        
         static List<Profile> AllProfile = new List<Profile>();
-        int selectedPlayer;
-        int profileScore;
+        //int selectedPlayer;
+        //int profileScore;
 
         public MainWindow()
         {            
@@ -53,8 +53,7 @@ namespace CarProject
             StreamWriter sw = new StreamWriter("profiles.txt", append:true);
             for (int i = 0; i < ProfileNames.Count; i++)
             {
-                sw.WriteLine(AllProfile[i].Name + " " + AllProfile[i].Score);
-                
+                sw.WriteLine(AllProfile[i].Name + " " + AllProfile[i].Score);                
             }
             sw.Close();
         }
@@ -69,13 +68,13 @@ namespace CarProject
             }
         }
         
-        private void Index()
-        {
-            StreamWriter sw = new StreamWriter("valami.txt");
-            sw.WriteLine(AllProfile.Count);
-            sw.WriteLine(profileScore);
-            sw.WriteLine(selectedPlayer);
-            sw.Close();
-        }
+        //private void Index()
+        //{
+        //    StreamWriter sw = new StreamWriter("index.txt");
+        //    sw.WriteLine(AllProfile.Count);
+        //    sw.WriteLine(profileScore);
+        //    sw.WriteLine(selectedPlayer);
+        //    sw.Close();
+        //}
     }
 }

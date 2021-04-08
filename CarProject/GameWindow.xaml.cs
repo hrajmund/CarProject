@@ -21,10 +21,10 @@ namespace CarProject
     /// </summary>
     public partial class GameWindow : Window
     {
-        static List<int> Scores = new List<int>();
+        //static List<int> Scores = new List<int>();
         static List<Rectangle> Coins = new List<Rectangle>();
         static List<Rectangle> RoadBlocks = new List<Rectangle>();
-        static List<Rect> HitBoxes = new List<Rect>();
+        //static List<Rect> HitBoxes = new List<Rect>();
 
         bool goLeft, goRight;
         int speed = 12;
@@ -32,7 +32,7 @@ namespace CarProject
         int scorecount = 0;
         int faultcount = 0;
         int fault = 0;
-        int selectedIndex;
+
         public GameWindow()
         {
             InitializeComponent();                       
@@ -164,6 +164,26 @@ namespace CarProject
         //    selectedIndex = Convert.ToInt32(line);
         //    Console.WriteLine(selectedIndex);
         //}
+        private void RoadBlockRespawn(Rectangle C)
+        {
+            C.Visibility = Visibility.Visible;
+            Random positionX = new Random();
+            Random positionY = new Random();
+
+            Canvas.SetTop(C, positionY.Next(30, 315));
+            if (positionX.Next(1, 4) == 1)
+            {
+                Canvas.SetLeft(C, 518);
+            }
+            if (positionX.Next(1, 4) == 2)
+            {
+                Canvas.SetLeft(C, 609);
+            }
+            if (positionX.Next(1, 4) == 3)
+            {
+                Canvas.SetLeft(C, 693);
+            }
+        }
         private void RoadBlockHit(Rectangle player, Rectangle _collectible)
         {
             Rect CarHitBox = new Rect(Canvas.GetLeft(player), Canvas.GetTop(player), player.Width, 1);
@@ -186,15 +206,17 @@ namespace CarProject
             }
             if (CollectibleHitBox.IntersectsWith(BackBox))
             {
-                Respawn(_collectible);
+                RoadBlockRespawn(_collectible);
             }
             if (fault == 3)
             {
                 //StreamWriter sw = new StreamWriter("scoring.txt");
                 //sw.WriteLine(count);
                 //sw.WriteLine(selectedIndex);
-                MessageBox.Show("Meghaltál");
-                Application.Current.MainWindow.Close();
+                MessageBox.Show("You Died!");
+                fault = 0;
+                score = 0;
+                Environment.Exit(0);
             }
         }
     }

@@ -18,7 +18,6 @@
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
-
             </Button.Resources>
         </Button>
         <Grid Grid.Row="1">
@@ -28,9 +27,11 @@
             </Grid.ColumnDefinitions>
             <ListBox x:Name="Players" Margin="30,10,30,60" BorderBrush="#E6AF2E" Foreground="#E6AF2E" BorderThickness="2" Background="#403233" FontFamily="Barlow Condensed Black" >
             </ListBox>
-            <TextBox x:Name="NameText" Grid.Column="1" Margin="10,10,10,170" BorderBrush="#E6AF2E" BorderThickness="2" Background="#403233" Foreground="#E6AF2E" FontFamily="Barlow Condensed Black"></TextBox>
+            <TextBox x:Name="NameText" Grid.Column="1" Margin="10,10,10,170" BorderBrush="#E6AF2E" BorderThickness="2" Background="#403233" Foreground="#E6AF2E" FontSize="15" FontFamily="Barlow Condensed Black"></TextBox>
             <Button x:Name="New_Profile" Content="Create a new Profile" Margin="110,64,120,119" Foreground="#E6AF2E" Background="#403233" FontFamily="Barlow Condensed Black" FontSize="15" Click="CreateProfile" Grid.Column="1" ></Button>
             <!--<Button x:Name="Select_Profile" Content="Select Profile" Margin="110,163,120,20" Foreground="#E6AF2E" Background="#403233" FontFamily="Barlow Condensed Black" FontSize="15" RenderTransformOrigin="0.479,0.602" Click="Select" ></Button>-->
+            <TextBlock Margin="70,97,80,53" FontSize="10" TextAlignment="Center"  Grid.Column="1" Text="Under Construction" Foreground="#E6AF2E" FontFamily="Barlow Condensed Black"/>
+            <TextBlock FontSize="10" TextAlignment="Right" Margin="330,190,10,0" Grid.Column="1" Text="Alpha 0.01" Foreground="#E6AF2E" FontFamily="Barlow Condensed Black"/>
         </Grid>
     </Grid>
 </Window>
